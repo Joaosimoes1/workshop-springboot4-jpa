@@ -19,13 +19,16 @@ public class UserService {
 		return repository.findAll();
 	}
 	
-	public Optional<User> findById(long id) {
-		Optional<User> obj = repository.findById(id);
-		
-		return Optional.ofNullable(obj.get());
+	public User findById(long id) {
+	    return repository.findById(id)
+	            .orElseThrow(() -> new RuntimeException("User not found"));
 	}
 	
 	public User insert(User obj) {
 		return repository.save(obj);
+	}
+	
+	public void delete(Long id) {
+		repository.deleteById(id);
 	}
 }
