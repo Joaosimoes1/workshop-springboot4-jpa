@@ -23,7 +23,7 @@ public class OrderItem implements Serializable{
 	private OrderItemPK id = new OrderItemPK();
 	
 	private Integer quantity;
-	private Double Price;
+	private Double price;
 	
 	public OrderItem() {	
 	
@@ -34,7 +34,7 @@ public class OrderItem implements Serializable{
 		id.setOrder(order);
 		id.setProduct(product);
 		this.quantity = quantity;
-		Price = price;
+		this.price = price;
 	}
 	
 	@JsonIgnore
@@ -44,6 +44,10 @@ public class OrderItem implements Serializable{
 	
 	public void setOrder(Order order) {
 		id.setOrder(order);
+	}
+	
+	public Double getSubTotal() {
+		return price * quantity;
 	}
 	
 	public Product getProduct() {
@@ -63,12 +67,12 @@ public class OrderItem implements Serializable{
 		this.quantity = quantity;
 	}
 
-	public Double getPrice() {
-		return Price;
+	public Double getprice() {
+		return price;
 	}
 
-	public void setPrice(Double price) {
-		Price = price;
+	public void setprice(Double price) {
+		this.price = price;
 	}
 
 	@Override
